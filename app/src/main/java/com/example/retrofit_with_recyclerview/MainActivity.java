@@ -47,8 +47,11 @@ public class MainActivity extends AppCompatActivity {
             public void onResponse(Call<List<Post>> call, Response<List<Post>> response) {
                 if (response.code() == 200){
                     List<Post> posts = response.body();
-                    postList.addAll(posts);
-                    adapter.notifyDataSetChanged();
+                    if (posts != null){
+                        postList.addAll(posts);
+                        adapter.notifyDataSetChanged();
+                    }
+
 
                 }else {
                     Toast.makeText(MainActivity.this, response.code(), Toast.LENGTH_SHORT).show();
